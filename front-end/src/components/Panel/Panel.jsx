@@ -5,7 +5,26 @@ import { FilterButton } from "../FilterButton/FilterButton";
 import { useState } from "react";
 
 export function Panel() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([
+    {
+      id: 1,
+      word: "kot",
+      translation: "cat",
+      category: "noun",
+    },
+    {
+      id: 2,
+      word: "pies",
+      translation: "dog",
+      category: "noun",
+    },
+    {
+      id: 3,
+      word: "skakać",
+      translation: "jump",
+      category: "verb",
+    },
+  ]);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   function handleFormSubmit(formData) {
