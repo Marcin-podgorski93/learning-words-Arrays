@@ -2,7 +2,7 @@ import { List } from "../List/List";
 import styles from "./Panel.module.css";
 import { Form } from "../Form/Form";
 import { FilterButton } from "../FilterButton/FilterButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function Panel() {
   const [data, setData] = useState([
@@ -26,6 +26,19 @@ export function Panel() {
     },
   ]);
   const [selectedCategory, setSelectedCategory] = useState(null);
+
+  // Odczytaj dane z localStorage podczas inicjalizacji komponentu
+  useEffect(() => {
+    const savedData = localStorage.getItem("data");
+    if (savedData) {
+      setData(JSON.parse(savedData));
+    }
+  }, []);
+
+  // Zapisz dane do localStorage za każdym razem, gdy `data` się zmieni
+  useEffect(() => {
+    localStorage.setItem("data", JSON.stringify(data));
+  }, [data]);
 
   function handleFormSubmit(formData) {
     setData((prevValue) => [...prevValue, formData]);
